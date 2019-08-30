@@ -1,0 +1,40 @@
+s: block
+block: { decls stmts }
+decls: decls decl|VOID
+decl: type ID
+type: BASIC|type [ NUM ]
+stmts: stmts stmt|VOID
+stmt: loc = bool
+loc: loc [ NUM ]|ID
+bool: loc|NUM|STRING
+bool: bool||join | join
+join: join&&equal | equal
+equal: equal==rel | equal!=rel | rel
+rel: expr < expr | expr > expr | expr <= expr | expr >= expr | expr
+expr: expr + term | expr - term | term 
+term: term*unary | term/unary | unary
+unary: !unary | -unary | factor
+factor: (bool) | loc | num | string
+
+
+|break|case|continue|do|while|if|else|switch|enum|for|do|long|short|static|struct|typedef|unsigned|void|return|break|scanf|print|function
+
+
+
+start: keyword | identifier | limiter | operator | string | number
+
+identifier: letter - ( letter | digit ) *
+
+string: " - ( letter | digit | limiter | operator | )* - "
+ 
+number: ( digit | \- - digit ) - ( digit * | digit * - . - digit * ) 
+
+keyword: i - n - t | d - o - u - b - l - e | c - h - a - r
+
+letter: _ | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z | A | B | C | D | E | F | G | H | I| J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z 
+
+digit: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+limiter: , | ; | [ | ] | \( | \) | { | } 
+
+operator: + | \- | \* | // | ! | % | ^ | & | = | ~ | " | << | >> | + - + | \- - \- | > | <
